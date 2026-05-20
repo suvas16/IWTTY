@@ -7,7 +7,8 @@ const server = http.createServer(app);
 
 // Expand payload limits to allow Base64 image transfers safely
 const io = new Server(server, {
-    maxHttpBufferSize: 1e7 // Increase buffer size to 10MB
+    maxHttpBufferSize: 1e7, // Keep your 10MB image limit
+    transports: ['websocket'] // <--- CRUCIAL: Forces WebSockets only
 });
 
 app.use(express.static('public'));
