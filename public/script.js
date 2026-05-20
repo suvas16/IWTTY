@@ -1,5 +1,7 @@
+
+
 const socket = io({
-    transports: ['websocket'] // <--- CRUCIAL: Forces the browser to use WebSockets
+    transports: ['websocket'] // <-- FORCES THE BROWSER TO USE A DIRECT TUNNEL
 });
 
 const messagesContainer = document.getElementById('messages');
