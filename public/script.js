@@ -1,4 +1,6 @@
-const socket = io();
+const socket = io({
+    transports: ['websocket'] // <--- CRUCIAL: Forces the browser to use WebSockets
+});
 
 const messagesContainer = document.getElementById('messages');
 const chatForm = document.getElementById('chat-form');
