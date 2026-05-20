@@ -15,7 +15,7 @@ app.use(express.static('public'));
 let activeUsers = new Set();
 const MAX_USERS = 2;
 let messageHistory = [];
-const MAX_HISTORY = 5000;
+const MAX_HISTORY = 50;
 
 io.on('connection', (socket) => {
     if (activeUsers.size >= MAX_USERS) {
