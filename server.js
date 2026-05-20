@@ -1,7 +1,7 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-
+const io = new Server(server, {
+    maxHttpBufferSize: 1e7,  
+    transports: ['websocket'] 
+});
 const app = express();
 const server = http.createServer(app);
 
