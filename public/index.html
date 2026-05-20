@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baat Karne Ke liye</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="header-top">
+                <div class="room-info">Group Chat (2 Max)</div>
+                <button id="search-toggle-btn" class="icon-btn">🔍</button>
+            </div>
+            <div id="my-username" class="user-identity">Connecting...</div>
+            
+            <div id="search-bar-container" class="search-bar-container" style="display: none;">
+                <input type="text" id="search-input" placeholder="Search messages..." />
+                <div class="search-nav">
+                    <span id="search-results-count">0/0</span>
+                    <button id="search-prev-btn" type="button">↑</button>
+                    <button id="search-next-btn" type="button">↓</button>
+                </div>
+            </div>
+        </header>
+
+        <div id="messages" class="message-area"></div>
+
+        <div id="reply-preview" class="reply-preview-bar" style="display: none;">
+            <div class="reply-preview-content">
+                <span id="reply-target-user" style="font-weight: bold;"></span>
+                <span id="reply-target-text"></span>
+            </div>
+            <button id="cancel-reply-btn">✕</button>
+        </div>
+
+        <form id="chat-form" class="input-area">
+            <label for="image-input" class="image-upload-label">📷</label>
+            <input type="file" id="image-input" accept="image/*" style="display: none;" />
+            
+            <input type="text" id="msg-input" placeholder="iMessage" autocomplete="off" required />
+            <button type="submit" id="send-btn">↑</button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

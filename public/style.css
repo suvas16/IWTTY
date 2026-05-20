@@ -1,0 +1,291 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 450px;
+    height: 100vh;
+    background-color: #1c1c1e;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+@media (min-width: 450px) {
+    .chat-container {
+        height: 85vh;
+        border-radius: 20px;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+    }
+}
+
+/* Header */
+.chat-header {
+    padding: 15px;
+    background-color: rgba(28, 28, 30, 0.9);
+    border-bottom: 0.5px solid #3a3a3c;
+    text-align: center;
+}
+.room-info { font-weight: 600; font-size: 17px; }
+.user-identity { font-size: 12px; color: #8e8e93; margin-top: 2px; }
+
+/* Message Area */
+.message-area {
+    flex: 1;
+    padding: 20px 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* iMessage Bubble Logic */
+.msg-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 75%;
+}
+
+.sender-name {
+    font-size: 11px;
+    color: #8e8e93;
+    margin-bottom: 3px;
+    margin-left: 12px;
+}
+
+.bubble {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* Sent by Me (Blue) */
+.msg-wrapper.me {
+    align-self: flex-end;
+}
+.msg-wrapper.me .bubble {
+    background-color: #007aff;
+    color: white;
+    border-bottom-right-radius: 5px;
+}
+
+/* Sent by Others (Gray) */
+.msg-wrapper.them {
+    align-self: flex-start;
+}
+.msg-wrapper.them .bubble {
+    background-color: #262629;
+    color: white;
+    border-bottom-left-radius: 5px;
+}
+
+/* System Alerts */
+.system-msg {
+    align-self: center;
+    font-size: 12px;
+    color: #8e8e93;
+    margin: 5px 0;
+}
+
+/* Input Area */
+.input-area {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #1c1c1e;
+    border-top: 0.5px solid #3a3a3c;
+}
+
+.input-area input {
+    flex: 1;
+    background-color: #262629;
+    border: 1px solid #3a3a3c;
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+}
+
+.input-area button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Timestamps */
+.timestamp {
+    font-size: 9px;
+    color: #8e8e93;
+    align-self: flex-end;
+    margin-top: 4px;
+    margin-left: 8px;
+}
+.me .timestamp { color: #e5e5ea; }
+
+/* Image Media styling */
+.bubble-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 14px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Reply Reference Box inside Chat Bubble */
+.reply-quote {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 3px solid #007aff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: #d1d1d6;
+}
+.me .reply-quote {
+    border-left-color: #fff;
+}
+.reply-user-title {
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    color: #fff;
+}
+
+/* Reply Preview Bar Above Input Box */
+.reply-preview-bar {
+    background-color: #262629;
+    border-top: 0.5px solid #3a3a3c;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+.reply-preview-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 85%;
+}
+#cancel-reply-btn {
+    background: none;
+    border: none;
+    color: #8e8e93;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Image Upload input label styling */
+.image-upload-label {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+/* Context actions */
+.bubble-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+}
+.bubble-container:hover::after {
+    content: "Double click to reply";
+    position: absolute;
+    bottom: -14px;
+    font-size: 9px;
+    color: #8e8e93;
+    white-space: nowrap;
+}
+.me .bubble-container:hover::after { right: 0; }
+.them .bubble-container:hover::after { left: 12px; }
+
+/* Header alignment adjustments */
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.icon-btn {
+    position: absolute;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #007aff;
+}
+
+/* Search Bar styling */
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    background-color: #262629;
+    border-radius: 10px;
+    padding: 4px 10px;
+    margin-top: 8px;
+    gap: 8px;
+}
+#search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+.search-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #8e8e93;
+}
+.search-nav button {
+    background: none;
+    border: none;
+    color: #007aff;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+/* Highlight styles for matches */
+mark.search-highlight {
+    background-color: rgba(255, 204, 0, 0.4);
+    color: #fff;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+mark.search-highlight.active-match {
+    background-color: rgba(255, 204, 0, 1);
+    color: #000;
+}
