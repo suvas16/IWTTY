@@ -1,5 +1,3 @@
-
-
 const socket = io({
     transports: ['websocket'] // <-- FORCES THE BROWSER TO USE A DIRECT TUNNEL
 });
