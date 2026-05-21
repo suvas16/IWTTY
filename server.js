@@ -1,7 +1,8 @@
 const io = new Server(server, {
-    maxHttpBufferSize: 1e7,  
-    transports: ['websocket'] 
+    maxHttpBufferSize: 1e7,  // Keeps your 10MB image upload capability
+    transports: ['websocket'] // <-- FORCES RENDER TO KEEP A DIRECT PORT OPEN
 });
+
 const app = express();
 const server = http.createServer(app);
 
